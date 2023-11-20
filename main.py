@@ -22,8 +22,8 @@ app.include_router(mainRouter)
 app.include_router(projetoRouter)
 app.include_router(alunoRouter)
 
-if __name__ == "__main__":
-    uvicorn.run(app="main:app", reload=True, port=8001)
+# if __name__ == "__main__":
+#     uvicorn.run(app="main:app", reload=True, port=8001)
 
 # TODO: fazer cadastro de foto dos alunos e dos projetos
 # TODO: fazer cadastro de algum item 1 para muitos (tags, ou coisa parecida)

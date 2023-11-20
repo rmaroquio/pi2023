@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   web:
-    container_name: blogit
+    container_name: pi2023
     build: .
     ports:
       - "8001:8000"

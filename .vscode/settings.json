@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "Projetos Integradores",
+            "database": "${workspaceFolder:Projeto20230920.Final}/dados.db"
+        }
+    ]
+}

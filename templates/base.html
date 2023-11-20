@@ -1,0 +1,49 @@
+<!-- /templates/base.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/static/lib/bootstrap-icons/code-square.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/static/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/lib/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/static/css/estilos.css">        
+    <title>Projetos Integradores</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">Projetos Integradores</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" href="/">Principal</a>
+                    {% if usuario and usuario.admin: %}
+                    <a class="nav-link" href="/projeto/listagem">Projetos</a>
+                    <a class="nav-link" href="/aluno/listagem">Alunos</a>                    
+                    {% endif %}
+                    {% if not usuario: %}
+                    <a class="nav-link" href="/aluno/novo"><b>Criar Conta</b></a>
+                    <a class="nav-link" href="/login">Entrar</a>
+                    {% else: %}                        
+                    <a class="nav-link" href="/aluno/dashboard">Área do Aluno</a>                        
+                    <a class="nav-link" href="/logout">Sair</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container my-5 pt-3">
+        {% block conteudo %}
+        {% endblock %}
+    </div>
+    <script src="/static/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    {% block script %}
+    {% endblock %}
+</body>
+
+</html>

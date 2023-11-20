@@ -1,0 +1,15 @@
+<!-- /templates/main/index.html -->
+{% extends "base.html" %}
+
+{% block conteudo %}
+<h1>Exclusão de Projeto</h1>
+<hr>
+<p class="lead">Deseja realmente excluir o projeto <b>{{ projeto.nome }}</b>?</p>
+<form action="/projeto/excluir" method="post">
+    <input type="hidden" name="id" value="{{ projeto.id }}">
+    <div class="mb-3">
+        <a href="/projeto/listagem" class="btn btn-secondary me-2">Cancelar</a>
+        <button class="btn btn-danger" type="submit">Excluir</button>
+    </div>
+</form>
+{% endblock %}

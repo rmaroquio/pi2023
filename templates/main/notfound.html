@@ -1,0 +1,10 @@
+<!-- /templates/main/notfound.html -->
+{% extends "base_neutra.html" %}
+
+{% block conteudo %}
+<h1>Página Não Encontrada</h1>
+<hr>
+<p class="lead">
+    A página <b>{{ request.path }}</b> que você tentou acessar não existe. O endereço da página pode estar incorreto ou a página pode ter sido removida.
+</p>
+{% endblock %}

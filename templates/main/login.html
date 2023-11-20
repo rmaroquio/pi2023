@@ -1,0 +1,43 @@
+<!-- /templates/main/login.html -->
+{% extends "base.html" %}
+
+{% block conteudo %}
+<h1>Login</h1>
+<hr>
+{% if not logado: %}
+    {% if request.query_params["returnUrl"]: %}
+    <p class="lead">A página que você tentou acessar requer que esteja logado. Faça o login para prosseguir.</p>
+    {% endif %}
+    <form method="post">
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail/usuário" value="{{ email }}" autofocus>
+            <label for="email">E-mail</label>
+            <span class="text-danger d-none small"></span>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha">
+            <label for="senha">Senha</label>
+            <span class="text-danger d-none small"></span>
+        </div>
+        
+        <div class="mb-3">
+            <a href="/" class="btn btn-secondary me-2">Voltar</a>
+            <button class="btn btn-primary" type="submit">Entrar</button>
+        </div>
+    </form>    
+    {% if request.query_params["status"] and request.query_params["status"] == "403": %}
+    <p class="lead">Seu perfil de usuário não tem autorização de acesso à página solicitada. Caso essa permissão seja necessária, entre em contato com o administrador do sistema.</p>
+    {% endif %}
+    <p class="lead">Ainda não criou sua conta?<br><a href="/aluno/novo" class="text-decoration-none text-primary">Clique aqui</a> para criar uma conta agora!</p>
+{% else: %}
+    <h3>Você já está logado.</h3>
+{% endif %}
+{% if erros and valores: %}
+<script>
+    const validationErrors = {{ erros|tojson }};
+    const fieldValues = {{ valores|tojson }};
+</script>
+<script src="/static/js/formValidation.js"></script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,89 @@
+<!-- /templates/projeto/projetos.html -->
+{% extends "base.html" %}
+
+{% block conteudo %}
+<div class="d-flex justify-content-between align-items-center">
+    <h1>Alunos Cadastrados</h1>
+    {% if qtdeAprovar: %}
+    <a href="/aluno/aprovar" class="btn btn-primary">
+        Aprovar Cadastros
+        <span class="badge bg-danger">{{ qtdeAprovar }}</span>
+    </a>
+    {% endif %}
+</div>
+<hr>
+{% if alunos|length == 0 %}
+<p>Não há alunos cadastrados.</p>
+{% else %}
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr>
+            <th class="text-bg-dark">Nome Completo</th>
+            <th class="text-bg-dark">E-mail</th>
+            <th class="text-bg-dark">Projeto</th>
+            <th class="text-bg-dark">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for a in alunos %}
+        <tr data-id="{{ a.id }}">
+            <td>{{ a.nome }}</td>
+            <td>{{ a.email }}</td>
+            <td>{{ a.nomeProjeto }}</td>
+            <td>
+                <button data-id="{{ a.id }}" class="btn btn-warning btn-sm" title="Desaprovar" data-bs-toggle="tooltip" data-bs-placement="left">
+                    <i class="bi bi-person-lock"></i>
+                </button>
+                <a href="/aluno/excluir/{{ a.id }}" class="btn btn-danger btn-sm" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
+                    <i class="bi bi-trash"></i>
+                </a>
+            </td>
+        </tr>    
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% if totalPaginas > 1 %}
+<nav>
+    <ul class="pagination pagination-sm">
+        <li class="page-item">
+            <a class="page-link {{ 'disabled' if (paginaAtual == 1) }}" href="/aluno/listagem?pa=1&tp={{ tamanhoPagina }}">
+                <i class="bi bi-arrow-left"></i>
+            </a>
+        </li>
+
+        <li class="page-item">
+            <a class="page-link {{ 'disabled' if (paginaAtual == 1) }}" href="/aluno/listagem?pa={{ paginaAtual-1 }}&tp={{ tamanhoPagina }}">
+                <i class="bi bi-arrow-left-short"></i>
+            </a>
+        </li>
+
+        {% for i in range(totalPaginas) %}
+        <li class="page-item">
+            <a class="page-link {{ 'active' if (paginaAtual == i+1) }}" href="/aluno/listagem?pa={{ i+1 }}&tp={{ tamanhoPagina }}">{{ i+1 }}</a>
+        </li>
+        {% endfor %}
+
+        <li class="page-item">
+            <a class="page-link {{ 'disabled' if (paginaAtual == totalPaginas) }}" href="/aluno/listagem?pa={{ paginaAtual+1 }}&tp={{ tamanhoPagina }}">
+                <i class="bi bi-arrow-right-short"></i>
+            </a>
+        </li>
+
+        <li class="page-item">
+            <a class="page-link {{ 'disabled' if (paginaAtual == totalPaginas) }}" href="/aluno/listagem?pa={{ totalPaginas }}&tp={{ tamanhoPagina }}">
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}
+
+{% block script %}
+<script src="/static/js/ativarTooltips.js"></script>
+{% if alunos|length > 0: %}
+<script src="/static/js/desaprovarCadastro.js"></script>
+{% endif %}
+{% endblock %}

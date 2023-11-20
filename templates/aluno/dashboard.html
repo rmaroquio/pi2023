@@ -1,0 +1,18 @@
+<!-- /templates/main/index.html -->
+{% extends "base.html" %}
+
+{% block conteudo %}
+<h1>Painel de Controle</h1>
+<hr>
+<h4 class="text-info">Dados Pessoais</h4>
+<hr>
+<p>Nome Completo: {{ aluno.nome }}</p>
+<p>E-mail: {{ aluno.email }}</p>
+<p>Projeto: {{ aluno.nomeProjeto }}</p>
+<p>Cadastro Aprovado: {{ "Sim" if aluno.aprovado else "Não" }}</p>
+<p>Administrador: {{ "Sim" if aluno.admin else "Não" }}</p>
+<hr>
+<h4 class="text-info">Ações Disponíveis</h4>
+<hr>
+<p><a href="/aluno/alterarsenha" class="btn btn-primary">Alterar Senha</a></p>
+{% endblock %}

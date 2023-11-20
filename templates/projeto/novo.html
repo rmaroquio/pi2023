@@ -1,0 +1,56 @@
+<!-- /templates/projeto/novoprojeto.html -->
+{% extends "base.html" %}
+
+{% block conteudo %}
+<h1>Novo Projeto</h1>
+<hr>
+<form method="post" enctype="multipart/form-data">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="nome" name="nome" placeholder="Escreva o nome aqui" autofocus>
+        <label for="nome">Nome</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="Escreva a descrição aqui" id="descricao" name="descricao" style="height: 100px"></textarea>
+        <label for="descricao">Descrição</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+    <!-- CAMPO DA IMAGEM -->
+    <div class="col-12 mb-3">
+        <label for="arquivoImagem" class="form-label">Selecione o Arquivo de Imagem</label>
+        <input class="form-control" type="file" id="arquivoImagem" name="arquivoImagem" onchange="previewImage(event)" accept="image/jpeg" required>
+        <span class="text-danger d-none small"></span>
+    </div>
+    <!-- --------------- -->
+    <div class="mb-3">
+        <a href="/projeto/listagem" class="btn btn-secondary me-2">Cancelar</a>
+        <button class="btn btn-primary" type="submit">Salvar</button>
+    </div>
+</form>
+<!-- LOCAL PARA MOSTRAR IMAGEM SELECIONADA -->
+<div class="col-3">
+    <img id="preview" src="" class="border border-2 rounded rounded-3 p-2 w-100 d-none" />
+</div>
+<!-- ------------------------------------- -->
+<!-- SCRIPT PARA MOSTRAR IMAGEM SELECIONADA -->
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var preview = document.getElementById('preview');
+            preview.src = reader.result;
+            preview.classList.remove('d-none');
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+<!-- -------------------------------------- -->
+{% if erros and valores: %}
+<script>
+    const validationErrors = {{ erros|tojson }};
+    const fieldValues = {{ valores|tojson }};
+</script>
+<script src="/static/js/formValidation.js"></script>
+
+{% endif %}
+{% endblock %}

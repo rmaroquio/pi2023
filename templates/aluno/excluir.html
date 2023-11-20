@@ -1,0 +1,15 @@
+<!-- /templates/main/index.html -->
+{% extends "base.html" %}
+
+{% block conteudo %}
+<h1>Exclusão de Aluno</h1>
+<hr>
+<p class="lead">Deseja realmente excluir o aluno <b>{{ aluno.nome }}</b>?</p>
+<form action="/aluno/excluir" method="post">
+    <input type="hidden" name="id" value="{{ aluno.id }}">
+    <div class="mb-3">
+        <a href="/aluno/listagem" class="btn btn-secondary me-2">Cancelar</a>
+        <button class="btn btn-danger" type="submit">Excluir</button>
+    </div>
+</form>
+{% endblock %}

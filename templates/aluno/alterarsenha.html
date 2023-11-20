@@ -1,0 +1,39 @@
+<!-- /templates/main/login.html -->
+{% extends "base.html" %}
+
+{% block conteudo %}
+<h1>Alteração de Senha</h1>
+<hr>
+<form method="post">    
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="senhaAtual" name="senhaAtual" placeholder="Digite sua senha atual">
+        <label for="senhaAtual">Senha Atual</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+    
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="novaSenha" name="novaSenha" placeholder="Digite sua nova senha">
+        <label for="novaSenha">Nova Senha</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="confNovaSenha" name="confNovaSenha" placeholder="Digite novamente sua nova senha">
+        <label for="confNovaSenha">Confirme Sua Nova Senha</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+
+    <div class="mb-3">
+        <a href="/" class="btn btn-secondary me-2">Cancelar</a>
+        <button class="btn btn-primary" type="submit">Alterar</button>
+    </div>
+</form>
+
+{% if erros: %}
+<script>
+    const validationErrors = {{ erros|tojson }};
+    const fieldValues = [];
+</script>
+<script src="/static/js/formValidation.js"></script>
+{% endif %}
+{% endblock %}

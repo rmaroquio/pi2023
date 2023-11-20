@@ -1,0 +1,36 @@
+<!-- /templates/main/index.html -->
+{% extends "base.html" %}
+
+{% block conteudo %}
+<h1>Bem-vindo(a)!</h1>
+<hr>
+<p class="lead">Seja bem-vindo(a) à página de apresentação dos projetos integradores do curso Técnico em Informática do Ifes campus Cachoeiro de Itapemirim.</p>
+<div class="row g-3">
+    <!-- cards dos projetos -->
+    {% for projeto in projetos %}
+    <div class="col-md-6 col-lg-3">
+        <div class="card d-flex flex-column h-100">
+            <!-- EXIBIÇÃO DA IMAGEM -->
+            <img src="/static/img/projetos/{{ projeto.id|id_img }}.jpg" class="card-img-top" alt="Imagem do projeto {{ projeto.nome }}">            
+            <!-- ------------------ -->
+            <div class="card-body">
+                <h5 class="card-title">{{ projeto.nome }}</h5>
+                <p class="card-text">{{ projeto.descricao }}</p>                
+            </div>            
+            <div class="card-footer h-100">
+                <h6>Integrantes</h6>
+                {% if projeto.integrantes|length > 0: %}
+                <ul class="list-group list-group-flush p-0">
+                    {% for integrante in projeto.integrantes %}
+                    <li class="list-group-item bg-transparent py-2">{{ integrante }}</li>
+                    {% endfor %}
+                </ul>
+                {% else: %}
+                <p class="card-text">Nenhum integrante cadastrado.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}    
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+<!-- /templates/projeto/novoprojeto.html -->
+{% extends "base.html" %}
+
+{% block conteudo %}
+<h1>Criar Conta</h1>
+<hr>
+<p class="lead">
+    Preencha corretamente os campos abaixo para criar uma nova conta.
+</p>
+<form method="post">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome completo, sem abreviações" autofocus>
+        <label for="nome">Nome Completo</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail">
+        <label for="email">E-mail</label>
+        <span class="text-danger d-none small"></span>
+    </div>    
+    <div class="form-floating mb-3">
+        <select class="form-select" id="idProjeto" name="idProjeto">
+            <option value="0">Selecione seu projeto...</option>
+            {% for projeto in projetos %}
+            <option value={{ projeto.id }}>{{ projeto.nome }}</option>
+            {% endfor %}
+        </select>
+        <label for="idProjeto">Projeto</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha">
+        <label for="senha">Senha</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="confSenha" name="confSenha" placeholder="Confirme sua senha">
+        <label for="confSenha">Confirmação de Senha</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+    <div class="mb-3">
+        <a href="/" class="btn btn-secondary me-2">Cancelar</a>
+        <button class="btn btn-primary" type="submit">Salvar</button>
+    </div>
+</form>
+{% if erros and valores: %}
+<script>
+    const validationErrors = {{ erros|tojson }};
+    const fieldValues = {{ valores|tojson }};
+</script>
+<script src="/static/js/formValidation.js"></script>
+{% endif %}
+{% endblock %}

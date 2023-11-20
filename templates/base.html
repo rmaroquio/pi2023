@@ -8,8 +8,8 @@
     <link rel="shortcut icon" href="/static/lib/bootstrap-icons/code-square.svg" type="image/x-icon">
     <link rel="stylesheet" href="/static/lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/lib/bootstrap-icons/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/static/css/estilos.css">        
-    <title>Projetos Integradores</title>
+    <link rel="stylesheet" href="/static/css/estilos.css">
+    <title>Projetos Integradores 2023</title>
 </head>
 
 <body>
@@ -24,13 +24,13 @@
                     <a class="nav-link active" href="/">Principal</a>
                     {% if usuario and usuario.admin: %}
                     <a class="nav-link" href="/projeto/listagem">Projetos</a>
-                    <a class="nav-link" href="/aluno/listagem">Alunos</a>                    
+                    <a class="nav-link" href="/aluno/listagem">Alunos</a>
                     {% endif %}
                     {% if not usuario: %}
                     <a class="nav-link" href="/aluno/novo"><b>Criar Conta</b></a>
                     <a class="nav-link" href="/login">Entrar</a>
-                    {% else: %}                        
-                    <a class="nav-link" href="/aluno/dashboard">Área do Aluno</a>                        
+                    {% else: %}
+                    <a class="nav-link" href="/aluno/dashboard">Área do Aluno</a>
                     <a class="nav-link" href="/logout">Sair</a>
                     {% endif %}
                 </div>
